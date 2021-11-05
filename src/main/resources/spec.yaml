@@ -34,7 +34,6 @@ components:
       type: object
       description: Short Info about cakes
       required:
-        - id
         - name
         - calories
         - image
@@ -59,5 +58,14 @@ components:
         weight:
           type: number
           description: Cake weight
+        components:
+          type: string
+          description: Components of cake
+        manufacturer:
+          type: string
+          description: Manufacturer of cake
+        shelflife:
+          type: string
+          description: Shelf time of cake
 
 
