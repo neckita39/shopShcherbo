@@ -1,0 +1,144 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- description: Generated server url
+  url: http://localhost:8080
+paths:
+  /cakes:
+    get:
+      operationId: cakes
+      responses:
+        "404":
+          content:
+            '*/*':
+              schema:
+                type: string
+          description: Not Found
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cakes'
+          description: OK
+      tags:
+      - cake-controller
+      x-accepts: application/json
+    post:
+      operationId: createCake
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cake'
+        required: true
+      responses:
+        "404":
+          content:
+            '*/*':
+              schema:
+                type: string
+          description: Not Found
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cake'
+          description: OK
+      tags:
+      - cake-controller
+      x-contentType: application/json
+      x-accepts: application/json
+  /cake/{id}:
+    get:
+      operationId: getCakeById
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "404":
+          content:
+            '*/*':
+              schema:
+                type: string
+          description: Not Found
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cake'
+          description: OK
+      tags:
+      - cake-controller
+      x-accepts: application/json
+components:
+  schemas:
+    Cake:
+      description: Short info about cakes
+      example:
+        image: image
+        price: 1.4658129805029452
+        name: name
+        weight: 5.962133916683182
+        id: 0
+        calories: 6.027456183070403
+      properties:
+        id:
+          description: id
+          format: int64
+          type: integer
+        name:
+          description: Name
+          type: string
+        calories:
+          description: Calories of cake
+          type: number
+        image:
+          description: Relative url of cake image
+          type: string
+        price:
+          description: Price of cake
+          type: number
+        weight:
+          description: Cake weight
+          type: number
+      required:
+      - calories
+      - id
+      - image
+      - name
+      - price
+      - weight
+      type: object
+    Cakes:
+      example:
+        cake_list:
+        - image: image
+          price: 1.4658129805029452
+          name: name
+          weight: 5.962133916683182
+          id: 0
+          calories: 6.027456183070403
+        - image: image
+          price: 1.4658129805029452
+          name: name
+          weight: 5.962133916683182
+          id: 0
+          calories: 6.027456183070403
+      properties:
+        cake_list:
+          description: Name
+          items:
+            $ref: '#/components/schemas/Cake'
+          type: array
+      required:
+      - cake_list
+      type: object
+
