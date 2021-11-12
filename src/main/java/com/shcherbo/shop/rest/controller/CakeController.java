@@ -1,9 +1,17 @@
 package com.shcherbo.shop.rest.controller;
 
+import com.shcherbo.shop.goods.CakesService;
 import com.shcherbo.shop.goods.CakesServiceImpl;
+import com.shcherbo.shop.orders.OrderEntity;
+import com.shcherbo.shop.orders.OrderService;
+import com.shcherbo.shop.purchase.PurchaseService;
 import com.shcherbo.shop.rest.dto.Cake.AdditionalInfo;
 import com.shcherbo.shop.rest.dto.Cake.Cake;
 import com.shcherbo.shop.rest.dto.Cakes;
+import com.shcherbo.shop.rest.dto.order.AdditionalInfoOrder;
+import com.shcherbo.shop.rest.dto.purchase.Purchase;
+import com.shcherbo.shop.users.UserEntity;
+import com.shcherbo.shop.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -18,39 +26,20 @@ import java.util.List;
 @RestController
 @Validated
 public class CakeController {
-    private final Cakes cakeList = new Cakes();
-    private static long idCounter = 0;
-    private final CakesServiceImpl cakesService;
+    private final UserService userService;
+    private final CakesService cakesService;
+    private final PurchaseService purchaseService;
+    private final OrderService orderService;
+
 
     @Autowired
-    public CakeController(CakesServiceImpl cakesService) {
-        List<Cake> tmp=new ArrayList<>();
-        cakeList.setCakeList(tmp);
+    public CakeController(UserService userService, CakesService cakesService, PurchaseService purchaseService, OrderService orderService) {
         this.cakesService = cakesService;
+        this.userService = userService;
+        this.purchaseService = purchaseService;
+        this.orderService = orderService;
     }
 
-//    public CakeController() {
-//        Cake cake1 = new Cake();
-//        idCounter++;
-//        cake1.setId(idCounter);
-//        cake1.setName("Napoleon");
-//        cake1.setPrice(new BigDecimal(100));
-//        cake1.setWeight(new BigDecimal(100));
-//        cake1.setImage("napoleon.jpg");
-//        cake1.setCalories(new BigDecimal(100));
-//        Cake cake2 = new Cake();
-//        idCounter++;
-//        cake2.setId(idCounter);
-//        cake2.setName("Rose");
-//        cake2.setPrice(new BigDecimal(200));
-//        cake2.setWeight(new BigDecimal(200));
-//        cake2.setImage("napoleon.jpg");
-//        cake2.setCalories(new BigDecimal(200));
-//        List<Cake> tmp = new ArrayList<Cake>();
-//        tmp.add(cake1);
-//        tmp.add(cake2);
-//        cakeList.setCakeList(tmp);
-//    }
 
 
     @GetMapping(value = "cakes", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -64,12 +53,19 @@ public class CakeController {
     }
 
     @PostMapping(path = "cakes", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Cake> createCake(@RequestBody @Valid Cake newCake){
-        newCake.setId(idCounter);
-        idCounter++;
-        cakeList.getCakeList().add(newCake);
+    public ResponseEntity<Cake> createCake(@RequestBody @Valid AdditionalInfo newCake){
+        cakesService.addCake(newCake);
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
 
+    @PostMapping(path = "addOrder", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AdditionalInfoOrder> createOrder(@RequestBody @Valid AdditionalInfoOrder newOrder) {
+        UserEntity userEntity = userService.addUser(newOrder.getUser());
+        OrderEntity orderEntity = orderService.addOrder(newOrder.getOrder(),userEntity);
+        for (Purchase purchase :newOrder.getPurchases()){
+            purchaseService.addPurchase(orderEntity,cakesService.getCakeEntity(purchase.getCakeId()),purchase.getNumber());
+        }
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
 }

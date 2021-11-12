@@ -55,4 +55,21 @@ public class CakesServiceImpl implements CakesService{
                 })
                 .orElseThrow(() -> new CakeNotFoundException("No such cake"));
     }
+    @Override
+    public CakeEntity getCakeEntity(Long id) {
+        return cakeRepository.findById(id).get();
+    }
+    @Override
+    public void addCake(AdditionalInfo cake){
+        CakeEntity cakeEntity = new CakeEntity();
+        cakeEntity.setCalories(cake.getCalories());
+        cakeEntity.setImage(cake.getImage());;
+        cakeEntity.setName(cake.getName());
+        cakeEntity.setPrice(cake.getPrice());
+        cakeEntity.setWeight(cake.getWeight());
+        cakeEntity.setComponents(cake.getComponents());
+        cakeEntity.setManufacturer(cake.getManufacturer());
+        cakeEntity.setShelflife(cake.getShelflife());
+        cakeRepository.save(cakeEntity);
+    }
 }
