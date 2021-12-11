@@ -16,15 +16,10 @@ import java.time.LocalDateTime;
 @Schema(description = "Info about purchase")
 @Validated
 public class Order {
-    @Null
-    @Schema(description = "id", required = false)
-    @JsonProperty("id")
-    private Long id;
-
 
     @NotNull
     @Schema(description = "userID", required = true)
-    @JsonProperty("userID")
+    @JsonProperty("user_id")
     private Long userID;
 
     @NotNull

@@ -17,7 +17,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 @Table(name = "USERINFO")
 public class UserEntity {
-    @Setter(AccessLevel.NONE)
+    @Setter(AccessLevel.PROTECTED)
     private @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
 

@@ -7,4 +7,5 @@ import com.shcherbo.shop.users.UserEntity;
 
 public interface PurchaseService {
     public void addPurchase(OrderEntity orderEntity, CakeEntity cakeEntity, Integer number);
+    public boolean isCakePurchased(Long id);
 }

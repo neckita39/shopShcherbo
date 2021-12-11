@@ -16,6 +16,7 @@ public class UserServiceImpl implements UserService {
     public UserEntity addUser(User user) {
         if (!userRepository.existsByNumber(user.getNumber())){
             UserEntity userEntity = new UserEntity();
+            userEntity.setId(user.getId());
             userEntity.setNumber(user.getNumber());
             userEntity.setName(user.getName());
             userRepository.saveAndFlush(userEntity);

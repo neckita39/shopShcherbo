@@ -44,11 +44,14 @@ public class CakeController {
 
     @GetMapping(value = "cakes", produces = MediaType.APPLICATION_JSON_VALUE)
     public Cakes cakes() {
+
+        System.out.println("get cakes");
         return cakesService.getCakes();
     }
 
     @GetMapping(value = "cake/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public AdditionalInfo getCakeById(@PathVariable Long id) {
+        System.out.println("get cake");
         return cakesService.getCakeById(id);
     }
 

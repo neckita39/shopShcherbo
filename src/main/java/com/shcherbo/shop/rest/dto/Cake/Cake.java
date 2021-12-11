@@ -43,4 +43,6 @@ public class Cake {
     @JsonProperty("weight")
     private BigDecimal weight;
 
+
+
 }

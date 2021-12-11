@@ -1,13 +1,16 @@
 package com.shcherbo.shop.goods;
 
 import com.shcherbo.shop.exception.CakeNotFoundException;
+import com.shcherbo.shop.purchase.PurchaseEntity;
 import com.shcherbo.shop.rest.dto.Cake.AdditionalInfo;
 import com.shcherbo.shop.rest.dto.Cake.Cake;
 import com.shcherbo.shop.rest.dto.Cakes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -71,5 +74,24 @@ public class CakesServiceImpl implements CakesService{
         cakeEntity.setManufacturer(cake.getManufacturer());
         cakeEntity.setShelflife(cake.getShelflife());
         cakeRepository.save(cakeEntity);
+    }
+    @Override
+    public void deleteCakeById(Long id)
+    {
+        cakeRepository.deleteAllById(Collections.singleton(id));
+    }
+    @Override
+    public void changeCake(AdditionalInfo additionalInfo, Long id){
+        CakeEntity cakeEntity = cakeRepository.getById(id);
+        cakeEntity.setCalories(additionalInfo.getCalories());
+        cakeEntity.setImage(additionalInfo.getImage());;
+        cakeEntity.setName(additionalInfo.getName());
+        cakeEntity.setPrice(additionalInfo.getPrice());
+        cakeEntity.setWeight(additionalInfo.getWeight());
+        cakeEntity.setComponents(additionalInfo.getComponents());
+        cakeEntity.setManufacturer(additionalInfo.getManufacturer());
+        cakeEntity.setShelflife(additionalInfo.getShelflife());
+        cakeRepository.save(cakeEntity);
+        System.out.println("here");
     }
 }

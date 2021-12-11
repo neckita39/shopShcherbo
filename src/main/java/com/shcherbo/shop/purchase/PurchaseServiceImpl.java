@@ -5,6 +5,8 @@ import com.shcherbo.shop.orders.OrderEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class PurchaseServiceImpl implements PurchaseService{
     private final PurchaseRepository purchaseRepository;
@@ -20,5 +22,10 @@ public class PurchaseServiceImpl implements PurchaseService{
         purchase.setOrder(orderEntity);
         purchase.setCake(cakeEntity);
         purchaseRepository.saveAndFlush(purchase);
+    }
+    @Override
+    public boolean isCakePurchased(Long id) {
+       Optional<PurchaseEntity> purchase= purchaseRepository.findById(id);
+        return purchase.isPresent();
     }
 }

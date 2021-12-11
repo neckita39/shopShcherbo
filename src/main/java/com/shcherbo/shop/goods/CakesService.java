@@ -9,4 +9,6 @@ public interface CakesService {
     void addCake(AdditionalInfo cake);
     Cakes getCakes();
     AdditionalInfo getCakeById(Long id);
+    void deleteCakeById(Long id);
+    void changeCake(AdditionalInfo additionalInfo, Long id);
 }

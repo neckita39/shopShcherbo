@@ -7,6 +7,7 @@ import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Optional;
 
 @Entity
 @Getter
@@ -47,4 +48,5 @@ public class PurchaseEntity {
     public int hashCode() {
         return Objects.hash(id);
     }
+
 }
