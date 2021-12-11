@@ -1,7 +1,6 @@
 package com.shcherbo.shop.goods;
 
 import com.shcherbo.shop.exception.CakeNotFoundException;
-import com.shcherbo.shop.purchase.PurchaseEntity;
 import com.shcherbo.shop.rest.dto.Cake.AdditionalInfo;
 import com.shcherbo.shop.rest.dto.Cake.Cake;
 import com.shcherbo.shop.rest.dto.Cakes;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -63,7 +61,7 @@ public class CakesServiceImpl implements CakesService{
         return cakeRepository.findById(id).get();
     }
     @Override
-    public void addCake(AdditionalInfo cake){
+    public Long addCake(AdditionalInfo cake){
         CakeEntity cakeEntity = new CakeEntity();
         cakeEntity.setCalories(cake.getCalories());
         cakeEntity.setImage(cake.getImage());;
@@ -74,11 +72,15 @@ public class CakesServiceImpl implements CakesService{
         cakeEntity.setManufacturer(cake.getManufacturer());
         cakeEntity.setShelflife(cake.getShelflife());
         cakeRepository.save(cakeEntity);
+        return cakeEntity.getId();
     }
     @Override
-    public void deleteCakeById(Long id)
+    public Object deleteCakeById(Long id)
     {
+        System.out.println("fsa");
         cakeRepository.deleteAllById(Collections.singleton(id));
+
+        return null;
     }
     @Override
     public void changeCake(AdditionalInfo additionalInfo, Long id){

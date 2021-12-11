@@ -5,19 +5,15 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<ul>
-    <li th:each="cakes : ${cakes}">
-        <span th:text="Название">Defoult</span>
-        <span th:text="${cakes.getName()}">Defoult</span>
-        <input type="text">
-        <input type="submit" value="Отправить">
-        <span th:text="Калорийность">Defoult</span>
-        <span th:text="${cakes.getCalories()}">Defoult</span>
-        <span th:text="Вес">Defoult</span>
-        <span th:text="${cakes.getWeight()}">Defoult</span>
-        <span th:text="Цена">Defoult</span>
-        <span th:text="${cakes.getPrice()}">Defoult</span>
-    </li>
-</ul>
+<span th:text="${cake.name}"></span>
+<span th:text="${cake.calories}"></span>
+<span th:text="${cake.price}"></span>
+<span th:text="${cake.weight}"></span>
+<span th:text="${cake.components}"></span>
+<span th:text="${cake.manufacturer}"></span>
+<span th:text="${cake.shelflife}"></span>
+<form action="#" th:action="@{'/admin/cake/delete/'+${cake.id}}"  method="GET">
+    <input type="submit" value="удалить торт" />
+</form>
 </body>
 </html>
