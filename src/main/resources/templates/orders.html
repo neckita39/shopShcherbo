@@ -1,0 +1,61 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="https://www.thymeleaf.org">-->
+<!--<head>-->
+<!--  <title>Getting Started: Handling Form Submission</title>-->
+<!--  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>-->
+<!--</head>-->
+<!--<body>-->
+<!--&lt;!&ndash;<ul>&ndash;&gt;-->
+<!--&lt;!&ndash;  <li th:each="cakes : ${cakes}">&ndash;&gt;-->
+<!--&lt;!&ndash;      <form th:action="@{/admin/cakes}" method="GET">&ndash;&gt;-->
+<!--&lt;!&ndash;    <span th:text="Название">Defoult</span>&ndash;&gt;-->
+<!--&lt;!&ndash;<span th:text="${cakes.name}">Defoult</span>&ndash;&gt;-->
+<!--&lt;!&ndash;    <span th:text="Калорийность">Defoult</span>&ndash;&gt;-->
+<!--&lt;!&ndash;<span th:text="${cakes.calories}">Defoult</span>&ndash;&gt;-->
+<!--&lt;!&ndash;    <span th:text="Вес">Defoult</span>&ndash;&gt;-->
+<!--&lt;!&ndash;<span th:text="${cakes.weight}">Defoult</span>&ndash;&gt;-->
+<!--&lt;!&ndash;    <span th:text="Цена">Defoult</span>&ndash;&gt;-->
+<!--&lt;!&ndash;<span th:text="${cakes.price}">Defoult</span>&ndash;&gt;-->
+<!--&lt;!&ndash;      </form>&ndash;&gt;-->
+<!--&lt;!&ndash;  </li>&ndash;&gt;-->
+<!--&lt;!&ndash;</ul>&ndash;&gt;-->
+<!--<h1>Добавить торт</h1>-->
+<!--<form action="#" th:action="@{/admin/cake/edit}" th:object="${cake}" method="post">-->
+<!--    <p>Name: <input type="text" th:field="*{name}" /></p>-->
+<!--    <p>Calories: <input type="number" step="any" th:field="*{calories}"></p>-->
+<!--    <p>Weight: <input type="number" step="any" th:field="*{weight}"></p>-->
+<!--    <p>Price: <input type="number" step="any" th:field="*{price}"></p>-->
+<!--    <p >Compositions:</p>-->
+<!--    <p><textarea type="text" th:field="*{compositions}" rows="10"></textarea></p>-->
+<!--    <p>Storage Conditions:</p>-->
+<!--    <p><textarea type="text" th:field="*{storageConditions}" rows="10"></textarea></p>-->
+<!--    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<tr th:each="order : ${orders}">
+    <td>
+        <span th:text="${order.id}"></span>
+        <span th:text="${order.userID}"></span>
+        <span th:text="${order.delivery}"></span>
+        <span th:text="${order.orderStatus}"></span>
+        <span th:text="${order.deliveryAddress}"></span>
+        <span th:text="${order.deliveryTime}"></span>
+        <form action="#" th:action="@{'/admin/order/'+${order.id}}"  method="GET">
+            <input type="submit" value="Подробнее " />
+        </form>
+        <h1></h1>
+    </td>
+</tr>
+<form action="#" th:action="@{/admin/addOrder}" method="get">
+    <input type="submit" value="добавить" />
+</form>
+</body>
+</html>

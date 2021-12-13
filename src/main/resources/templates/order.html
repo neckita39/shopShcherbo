@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+<h1>Сведения о доставке:
+    <span th:text="${order.deliveryAddress}"></span></h1>
+<h1>Время доставки:
+<span th:text="${order.deliveryTime}"></span></h1>
+<h1>Способ оплаты:
+<span th:text="${order.payment}"></span></h1>
+<form action="#" th:action="@{'/admin/order/delete/'+${order.id}}"  method="GET">
+    <input type="submit" value="удалить заказ" />
+</form>
+</body>
+</html>

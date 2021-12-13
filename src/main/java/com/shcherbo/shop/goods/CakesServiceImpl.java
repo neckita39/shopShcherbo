@@ -80,8 +80,9 @@ public class CakesServiceImpl implements CakesService{
         cakeRepository.deleteAllById(Collections.singleton(id));
     }
     @Override
-    public void changeCake(AdditionalInfo additionalInfo, Long id){
-        CakeEntity cakeEntity = cakeRepository.getById(id);
+    public void changeCake(AdditionalInfo additionalInfo){
+//        CakeEntity cakeEntity = cakeRepository.getById(id);
+        CakeEntity cakeEntity = cakeRepository.getById(additionalInfo.getId());
         cakeEntity.setCalories(additionalInfo.getCalories());
         cakeEntity.setImage(additionalInfo.getImage());;
         cakeEntity.setName(additionalInfo.getName());

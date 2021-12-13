@@ -41,13 +41,25 @@ public class Admin {
         this.cakesService = cakesService;
     }
 
-    @GetMapping(value = "/start")
-    public ModelAndView getStart() {
-        ModelAndView maw = new ModelAndView("start");
-        return maw;
+    @GetMapping(value = "/menu")
+    public String getStart(Model model) {
+        model.addAttribute("menu");
+        return "menu";
     }
 
-
+    @RequestMapping(value = "/changecake")
+    public RedirectView changeCake(AdditionalInfo additionalInfo)
+    {
+        System.out.println("hey");
+        cakesService.changeCake(additionalInfo);
+        return new RedirectView("/admin/cakes");
+    }
+    @GetMapping(value = "/changecake/{id}")
+    public ModelAndView getCakeEditForm(AdditionalInfo additionalInfo){
+        ModelAndView modelAndView = new ModelAndView("editcake");
+        modelAndView.addObject("cake", additionalInfo);
+        return modelAndView;
+    }
     @GetMapping(value = "/cakes")
     public String cakes(Model model) {
         model.addAttribute("cakes", cakesService.getCakes().getCakeList());

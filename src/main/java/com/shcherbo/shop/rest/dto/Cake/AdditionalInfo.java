@@ -15,7 +15,6 @@ import java.math.BigDecimal;
 @Schema(description = "Additional info about cakes")
 @Validated
 public class AdditionalInfo {
-    @Null
     @Schema(description = "id", required = false)
     @JsonProperty("id")
     private Long id;

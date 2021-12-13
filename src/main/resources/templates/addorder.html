@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<form action="#" th:action="@{/admin/addOrder}" th:object="${order}", method="POST">
+<!--    <span th:text="${user.number}"></span>-->
+    <input type="text" th:field="*{user.number}" />
+    <input type="text" th:field="*{user.name}" />
+    <input type="text" th:field="*{order.userID}" />
+    <input type="text" th:field="*{order.delivery}" />
+    <input type="text" th:field="*{order.orderStatus}" />
+    <input type="text" th:field="*{order.payment}" />
+    <input type="text" th:field="*{order.deliveryAddress}" />
+    <input type="text" th:field="*{order.deliveryTime}" />
+    <input type="text" th:field="*{purchases[0].cakeId}" />
+    <input type="text" th:field="*{purchases[0].number}" />
+<!--    <input type="text" th:field="*{purchases.}" />-->
+
+
+
+<!--    <span th:text="${user.name}"></span>-->
+<!--    <tr th:each="user : ${user}">-->
+<!--        <td>-->
+
+<!--            <h1></h1>-->
+<!--        </td>-->
+
+<!--    </tr>-->
+<!--    <span th:text="${order.delivery}"></span>-->
+<!--    <span th:text="${order.orderStatus}"></span>-->
+<!--    <span th:text="${order.payment}"></span>-->
+<!--    <span th:text="${order.deliveryAddress}"></span>-->
+<!--    <span th:text="${order.deliveryTime}"></span>-->
+<!--    <tr th:each="order : ${order}">-->
+<!--        <td>-->
+<!--            -->
+<!--            <h1></h1>-->
+<!--        </td>-->
+
+<!--    </tr>-->
+<!--    <tr th:each="purchases : ${purchases}">-->
+<!--        <td>-->
+<!--            <span th:text="${purchases.cakeId}"></span>-->
+<!--            <span th:text="${purchases.number}"></span>-->
+<!--            <h1></h1>-->
+<!--        </td>-->
+
+<!--    </tr>-->
+
+    <span><input type="submit" value="подтвердить"/></span>
+</form>
+</body>
+</html>
