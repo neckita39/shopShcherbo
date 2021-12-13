@@ -22,7 +22,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 @Table(name = "ORDERINFO")
 public class OrderEntity {
-    @Setter(AccessLevel.NONE)
+    @Setter(AccessLevel.PROTECTED)
     private @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
 

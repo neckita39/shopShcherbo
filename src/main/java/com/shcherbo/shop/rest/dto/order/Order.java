@@ -17,6 +17,11 @@ import java.time.LocalDateTime;
 @Validated
 public class Order {
 
+    @Null
+    @Schema(description = "id", required = false)
+    @JsonProperty("id")
+    private Long id;
+
     @NotNull
     @Schema(description = "userID", required = true)
     @JsonProperty("user_id")
@@ -42,7 +47,6 @@ public class Order {
     @JsonProperty("deliveryAddress")
     private String deliveryAddress;
 
-    @NotNull
     @Schema(description = "delivery time", required = true)
     @JsonProperty("deliveryTime")
     private LocalDateTime deliveryTime;

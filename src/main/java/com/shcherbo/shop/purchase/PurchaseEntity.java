@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Entity
 @Getter
-@Setter
+@Setter(AccessLevel.PUBLIC)
 @ToString
 @RequiredArgsConstructor
 @Table(name = "PURCHASE")
@@ -20,19 +20,19 @@ public class PurchaseEntity {
     private @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
 
-    @Setter(AccessLevel.PROTECTED)
+    @Setter(AccessLevel.PUBLIC)
     @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
     @JoinColumn(nullable = false)
     private CakeEntity cake;
 
-    @Setter(AccessLevel.PROTECTED)
+    @Setter(AccessLevel.PUBLIC)
     @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
     @JoinColumn(nullable = false)
     private OrderEntity order;
 
-    @Setter(AccessLevel.PROTECTED)
+    @Setter(AccessLevel.PUBLIC)
     private Integer number;
 
 

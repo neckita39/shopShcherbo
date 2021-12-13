@@ -40,9 +40,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<form action="#" th:action="@{/admin/cake/add}" method="get">
-    <input type="submit" value="добавить" />
-</form>
 <tr th:each="cake : ${cakes}">
     <td>
         <span th:text="${cake.name}"></span>
@@ -54,6 +51,9 @@
         </a>
         <h1></h1>
     </td>
-
+</tr>
+    <form action="#" th:action="@{/admin/cake/add}" method="get">
+        <input type="submit" value="добавить" />
+    </form>
 </body>
 </html>
