@@ -84,5 +84,15 @@ public class OrderServiceImpl implements OrderService{
     public void deleteOrderById(Long id){
         orderRepository.deleteAllById(Collections.singleton(id));
     }
-
+    @Override
+    public  void changeOrder(Order order)
+    {
+        OrderEntity orderEntity=orderRepository.getById(order.getId());
+        orderEntity.setDelivery(order.getDelivery());
+        orderEntity.setStatus(order.getOrderStatus());
+        orderEntity.setDeliveryAddress(order.getDeliveryAddress());
+        orderEntity.setPayment(order.getPayment());
+        orderEntity.setDeliveryTime(order.getDeliveryTime());
+        orderRepository.save(orderEntity);
+    }
 }

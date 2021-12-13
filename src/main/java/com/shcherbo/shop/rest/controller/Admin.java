@@ -60,6 +60,19 @@ public class Admin {
         modelAndView.addObject("cake", additionalInfo);
         return modelAndView;
     }
+    @GetMapping(value = "/editorder/{id}")
+    public ModelAndView getOrderEditForm(Order order){
+        ModelAndView modelAndView = new ModelAndView("editorder");
+        modelAndView.addObject("order", order);
+        return modelAndView;
+    }
+    @RequestMapping(value = "/editorder")
+    public RedirectView editOrder(Order order)
+    {
+        System.out.println("hey");
+        orderService.changeOrder(order);
+        return new RedirectView("/admin/orders");
+    }
     @GetMapping(value = "/cakes")
     public String cakes(Model model) {
         model.addAttribute("cakes", cakesService.getCakes().getCakeList());

@@ -15,5 +15,14 @@
 <form action="#" th:action="@{'/admin/order/delete/'+${order.id}}"  method="GET">
     <input type="submit" value="удалить заказ" />
 </form>
+<form action="#" th:action="@{'/admin//editorder/'+${order.id}}"  method="GET">
+    <input type="submit" value="изменить" />
+</form>
+<form action="#" th:action="@{'/admin/menu'}"  method="GET">
+    <input type="submit" value="На главную" />
+</form>
+<form action="#" th:action="@{'/admin/orders'}"  method="GET">
+    <input type="submit" value="Назад" />
+</form>
 </body>
 </html>

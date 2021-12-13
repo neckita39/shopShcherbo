@@ -17,40 +17,15 @@
     <input type="text" th:field="*{order.deliveryTime}" />
     <input type="text" th:field="*{purchases[0].cakeId}" />
     <input type="text" th:field="*{purchases[0].number}" />
-<!--    <input type="text" th:field="*{purchases.}" />-->
 
-
-
-<!--    <span th:text="${user.name}"></span>-->
-<!--    <tr th:each="user : ${user}">-->
-<!--        <td>-->
-
-<!--            <h1></h1>-->
-<!--        </td>-->
-
-<!--    </tr>-->
-<!--    <span th:text="${order.delivery}"></span>-->
-<!--    <span th:text="${order.orderStatus}"></span>-->
-<!--    <span th:text="${order.payment}"></span>-->
-<!--    <span th:text="${order.deliveryAddress}"></span>-->
-<!--    <span th:text="${order.deliveryTime}"></span>-->
-<!--    <tr th:each="order : ${order}">-->
-<!--        <td>-->
-<!--            -->
-<!--            <h1></h1>-->
-<!--        </td>-->
-
-<!--    </tr>-->
-<!--    <tr th:each="purchases : ${purchases}">-->
-<!--        <td>-->
-<!--            <span th:text="${purchases.cakeId}"></span>-->
-<!--            <span th:text="${purchases.number}"></span>-->
-<!--            <h1></h1>-->
-<!--        </td>-->
-
-<!--    </tr>-->
 
     <span><input type="submit" value="подтвердить"/></span>
+</form>
+<form action="#" th:action="@{'/admin/menu'}"  method="GET">
+    <input type="submit" value="На главную" />
+</form>
+<form action="#" th:action="@{'/admin/orders'}"  method="GET">
+    <input type="submit" value="Назад" />
 </form>
 </body>
 </html>
