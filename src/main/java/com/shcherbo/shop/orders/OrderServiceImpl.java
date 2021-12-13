@@ -1,14 +1,8 @@
 package com.shcherbo.shop.orders;
 
 import com.shcherbo.shop.exception.CakeNotFoundException;
-import com.shcherbo.shop.goods.CakeEntity;
 import com.shcherbo.shop.goods.CakeRepository;
-import com.shcherbo.shop.purchase.PurchaseEntity;
-import com.shcherbo.shop.rest.dto.Cake.AdditionalInfo;
-import com.shcherbo.shop.rest.dto.Cake.Cake;
-import com.shcherbo.shop.rest.dto.Cakes;
 import com.shcherbo.shop.rest.dto.Orders;
-import com.shcherbo.shop.rest.dto.order.AdditionalInfoOrder;
 import com.shcherbo.shop.rest.dto.order.Order;
 import com.shcherbo.shop.users.UserEntity;
 import com.shcherbo.shop.users.UserRepository;
@@ -22,15 +16,9 @@ import java.util.stream.Collectors;
 @Service
 public class OrderServiceImpl implements OrderService{
     private final OrderRepository orderRepository;
-    private final CakeRepository cakeRepository;
-    private final UserRepository userRepository;
-
     @Autowired
-    public OrderServiceImpl(OrderRepository orderRepository, CakeRepository cakeRepository,
-                            UserRepository userRepository){
-        this.cakeRepository=cakeRepository;
+    public OrderServiceImpl(OrderRepository orderRepository){
         this.orderRepository = orderRepository;
-        this.userRepository=userRepository;
     }
     @Override
     public OrderEntity addOrder(Order order, UserEntity user){

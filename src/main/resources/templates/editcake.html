@@ -5,17 +5,27 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<form action="#" th:action="@{/admin/changecake}" th:object="${cake}" method="post">
-    <span>название <input type="text"  th:field="*{id}" /></span>
-    <span>название <input type="text" th:value="${cake.name}" th:field="*{name}" /></span>
-    <span>калорийность: <input type="text" th:field="*{calories}"></span>
-    <span>вес: <input type="text" th:field="*{weight}"></span>
-    <span>цена: <input type="text"  th:field="*{price}"></span>
-    <span>состав: <input type="text" th:field="*{components}"></span>
-    <span>производитель: <input type="text" th:field="*{manufacturer}"></span>
-    <span>срок годности: <input type="text" th:field="*{shelflife}"></span>
+<form action="#" th:action="@{/admin/editcake}" th:object="${cake}" method="post">
+    <span>Номер торта: <input type="text"  th:field="*{id}" /></span>
+    <h1></h1>
+    <span>Название <input type="text" th:value="${cake.name}" th:field="*{name}" /></span>
+    <h1></h1>
+    <span>Калорийность: <input type="text" th:field="*{calories}"></span>
+    <h1></h1>
+    <span>Вес: <input type="text" th:field="*{weight}"></span>
+    <h1></h1>
+    <span>Цена: <input type="text"  th:field="*{price}"></span>
+    <h1></h1>
+    <span>Состав: <input type="text" th:field="*{components}"></span>
+    <h1></h1>
+    <span>Производитель: <input type="text" th:field="*{manufacturer}"></span>
+    <h1></h1>
+    <span>Срок годности: <input type="text" th:field="*{shelflife}"></span>
+    <h1></h1>
     <span><input type="submit" value="подтвердить" /></span>
 </form>
+<form action="#" th:action="@{'/admin/cakes'}"  method="GET">
+    <input type="submit" value="Назад" />
 <form action="#" th:action="@{'/admin/menu'}"  method="GET">
     <input type="submit" value="На главную" />
 </form>

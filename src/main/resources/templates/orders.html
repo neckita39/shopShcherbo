@@ -42,11 +42,17 @@
 <body>
 <tr th:each="order : ${orders}">
     <td>
+        <span>Номер заказа:</span>
         <span th:text="${order.id}"></span>
+        <span>Номер клиента:</span>
         <span th:text="${order.userID}"></span>
+        <span>Доставка:</span>
         <span th:text="${order.delivery}"></span>
+        <span>Состояние:</span>
         <span th:text="${order.orderStatus}"></span>
+        <span>Адрес:</span>
         <span th:text="${order.deliveryAddress}"></span>
+        <span>Время доставки:</span>
         <span th:text="${order.deliveryTime}"></span>
         <form action="#" th:action="@{'/admin/order/'+${order.id}}"  method="GET">
             <input type="submit" value="Подробнее " />
@@ -54,7 +60,7 @@
         <h1></h1>
     </td>
 </tr>
-<form action="#" th:action="@{/admin/addOrder}" method="get">
+<form action="#" th:action="@{/admin/addorder}" method="get">
     <input type="submit" value="добавить" />
 </form>
 <form action="#" th:action="@{'/admin/menu'}"  method="GET">

@@ -1,7 +1,6 @@
 package com.shcherbo.shop.rest.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.shcherbo.shop.rest.dto.Cake.Cake;
 import com.shcherbo.shop.rest.dto.order.Order;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;

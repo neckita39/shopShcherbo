@@ -6,13 +6,14 @@
 </head>
 <body>
 
-<h1>Сведения о доставке:
-    <span th:text="${order.deliveryAddress}"></span></h1>
-<h1>Время доставки:
-<span th:text="${order.deliveryTime}"></span></h1>
-<h1>Способ оплаты:
-<span th:text="${order.payment}"></span></h1>
-<form action="#" th:action="@{'/admin/order/delete/'+${order.id}}"  method="GET">
+<h3>Сведения о доставке:</h3>
+    <span th:text="${order.deliveryAddress}"></span>
+<h3>Время доставки:</h3>
+<span th:text="${order.deliveryTime}"></span>
+<h3>Способ оплаты:</h3>
+<span th:text="${order.payment}"></span>
+<h1></h1>
+<form action="#" th:action="@{'/admin/deleteorder/'+${order.id}}"  method="GET">
     <input type="submit" value="удалить заказ" />
 </form>
 <form action="#" th:action="@{'/admin//editorder/'+${order.id}}"  method="GET">

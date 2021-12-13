@@ -5,17 +5,17 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<span th:text="${cake.name}"></span>
-<span th:text="${cake.calories}"></span>
-<span th:text="${cake.price}"></span>
-<span th:text="${cake.weight}"></span>
+<h3>Состав:</h3>
 <span th:text="${cake.components}"></span>
+<h3>Производитель:</h3>
 <span th:text="${cake.manufacturer}"></span>
+<h3>Срок хранения:</h3>
 <span th:text="${cake.shelflife}"></span>
-<form action="#" th:action="@{'/admin/changecake/'+${cake.id}}"  method="GET">
+<h1></h1>
+<form action="#" th:action="@{'/admin/editcake/'+${cake.id}}"  method="GET">
     <input type="submit" value="Изменить торт" />
 </form>
-<form action="#" th:action="@{'/admin/cake/delete/'+${cake.id}}"  method="GET">
+<form action="#" th:action="@{'/admin/deletecake/'+${cake.id}}"  method="GET">
     <input type="submit" value="удалить торт" />
 </form>
 <form action="#" th:action="@{'/admin/menu'}"  method="GET">

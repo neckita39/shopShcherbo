@@ -42,9 +42,13 @@
 <body>
 <tr th:each="cake : ${cakes}">
     <td>
+        <span>Название:</span>
         <span th:text="${cake.name}"></span>
+        <span>Калорийность:</span>
         <span th:text="${cake.calories}"></span>
+        <span>Цена:</span>
         <span th:text="${cake.price}"></span>
+        <span>Вес:</span>
         <span th:text="${cake.weight}"></span>
         <a th:href="@{'/admin/cake/'+${cake.id}}">
             <button type="button">подробнее</button>
@@ -52,7 +56,7 @@
         <h1></h1>
     </td>
 </tr>
-    <form action="#" th:action="@{/admin/cake/add}" method="get">
+    <form action="#" th:action="@{/admin/addcake/}" method="get">
         <input type="submit" value="добавить" />
     </form>
 <form action="#" th:action="@{'/admin/menu'}"  method="GET">

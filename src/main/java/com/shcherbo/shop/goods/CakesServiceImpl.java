@@ -76,12 +76,10 @@ public class CakesServiceImpl implements CakesService{
     @Override
     public void deleteCakeById(Long id)
     {
-        System.out.println("fsa");
         cakeRepository.deleteAllById(Collections.singleton(id));
     }
     @Override
     public void changeCake(AdditionalInfo additionalInfo){
-//        CakeEntity cakeEntity = cakeRepository.getById(id);
         CakeEntity cakeEntity = cakeRepository.getById(additionalInfo.getId());
         cakeEntity.setCalories(additionalInfo.getCalories());
         cakeEntity.setImage(additionalInfo.getImage());;
@@ -92,6 +90,5 @@ public class CakesServiceImpl implements CakesService{
         cakeEntity.setManufacturer(additionalInfo.getManufacturer());
         cakeEntity.setShelflife(additionalInfo.getShelflife());
         cakeRepository.save(cakeEntity);
-        System.out.println("here");
     }
 }

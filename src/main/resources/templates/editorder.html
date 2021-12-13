@@ -6,14 +6,18 @@
 </head>
 <body>
 <form action="#" th:action="@{'/admin/editorder/'}" th:object="${order}", method="POST">
-    <!--    <span th:text="${user.number}"></span>-->
-    <input type="text" th:field="*{id}" />
-    <input type="text" th:field="*{delivery}" />
-    <input type="text" th:field="*{orderStatus}" />
-    <input type="text" th:field="*{payment}" />
-    <input type="text" th:field="*{deliveryAddress}" />
-    <input type="text" th:field="*{deliveryTime}" />
-
+    <span>Номер заказа:<input type="text" th:field="*{id}" /></span>
+    <h1></h1>
+    <span>Способ доставки:(NEED, NO)<input type="text" th:field="*{delivery}" /></span>
+    <h1></h1>
+    <span>Состояние:(NEW,CANCELED,PERFORMED,FINISHED) <input type="text" th:field="*{orderStatus}" /></span>
+    <h1></h1>
+    <span>Способ оплаты:(ONLINE,MONEY)<input type="text" th:field="*{payment}" /></span>
+    <h1></h1>
+    <span>Адрес доставки(не вводить):<input type="text" th:field="*{deliveryAddress}" /></span>
+    <h1></h1>
+    <span>Время доставки(не вводить):<input type="text" th:field="*{deliveryTime}" /></span>
+    <h1></h1>
     <span><input type="submit" value="подтвердить"/></span>
 </form>
 <form action="#" th:action="@{'/admin/menu'}"  method="GET">
