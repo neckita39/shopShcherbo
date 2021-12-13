@@ -110,7 +110,7 @@ public class Admin {
     }
 
     @PostMapping(path = "addorder")
-    public RedirectView addOrder(AdditionalInfoOrder order, Model model) {
+    public RedirectView addOrder(AdditionalInfoOrder order) {
         UserEntity userEntity = userService.addUser(order.getUser());
         OrderEntity orderEntity = orderService.addOrder(order.getOrder(), userEntity);
         for (Purchase purchase : order.getPurchases()) {
