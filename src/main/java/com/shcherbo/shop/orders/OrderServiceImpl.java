@@ -1,11 +1,9 @@
 package com.shcherbo.shop.orders;
 
 import com.shcherbo.shop.exception.CakeNotFoundException;
-import com.shcherbo.shop.goods.CakeRepository;
 import com.shcherbo.shop.rest.dto.Orders;
 import com.shcherbo.shop.rest.dto.order.Order;
 import com.shcherbo.shop.users.UserEntity;
-import com.shcherbo.shop.users.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,25 +14,20 @@ import java.util.stream.Collectors;
 @Service
 public class OrderServiceImpl implements OrderService{
     private final OrderRepository orderRepository;
+    private final OrderDAO orderDAO;
     @Autowired
-    public OrderServiceImpl(OrderRepository orderRepository){
+    public OrderServiceImpl(OrderRepository orderRepository, OrderDAO orderDAO){
         this.orderRepository = orderRepository;
+        this.orderDAO=orderDAO;
     }
     @Override
-    public OrderEntity addOrder(Order order, UserEntity user){
-        OrderEntity orderEntity=new OrderEntity();
-        orderEntity.setDelivery(order.getDelivery());
-        orderEntity.setStatus(order.getOrderStatus());
-        orderEntity.setDeliveryAddress(order.getDeliveryAddress());
-        orderEntity.setPayment(order.getPayment());
-        orderEntity.setUser(user);
-        orderEntity.setDeliveryTime(order.getDeliveryTime());
-        return orderRepository.saveAndFlush(orderEntity);
+    public void addOrder(Order order){
+        orderDAO.createOrder(order);
     }
     @Override
     public Orders getOrders()
     {
-        List<OrderEntity> orderEntityList=orderRepository.findAll();
+        List<OrderEntity> orderEntityList=orderDAO.getAllOrders();
         List<Order> orderList=orderEntityList.stream().map(
                 c ->{
                     Order order= new Order();
@@ -61,9 +54,10 @@ public class OrderServiceImpl implements OrderService{
                     order.setOrderStatus(c.getStatus());
                     order.setDeliveryAddress(c.getDeliveryAddress());
                     order.setPayment(c.getPayment());
-                    order.setDeliveryTime(c.getDeliveryTime());
+//                    order.setDeliveryTime(c.getDeliveryTime());
                     order.setUserID(c.getUser().getId());
                     order.setId(c.getId());
+
                     return order;
                 })
                 .orElseThrow(() -> new CakeNotFoundException("No such cake"));
@@ -80,7 +74,7 @@ public class OrderServiceImpl implements OrderService{
         orderEntity.setStatus(order.getOrderStatus());
         orderEntity.setDeliveryAddress(order.getDeliveryAddress());
         orderEntity.setPayment(order.getPayment());
-        orderEntity.setDeliveryTime(order.getDeliveryTime());
+//        orderEntity.setDeliveryTime(order.getDeliveryTime());
         orderRepository.save(orderEntity);
     }
 }

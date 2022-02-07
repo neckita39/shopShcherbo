@@ -8,7 +8,6 @@ import com.shcherbo.shop.rest.dto.statuses.Payment;
 import com.shcherbo.shop.users.UserEntity;
 import lombok.*;
 import org.hibernate.Hibernate;
-import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -51,7 +50,7 @@ public class OrderEntity {
     private String deliveryAddress;
 
     @Setter(AccessLevel.PROTECTED)
-    private LocalDateTime deliveryTime;
+    private String deliveryTime;
 
     @Override
     public boolean equals(Object o) {

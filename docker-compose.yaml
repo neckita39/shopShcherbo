@@ -10,13 +10,13 @@ services:
     image: shop
     restart: always
     ports:
-      - 8080:2020
+      - 81:2020
     networks:
       - auth-network
       - db-network
     environment:
       - SPRING_DATA_SOURCE_URL=jdbc:postgresql://db:5432/postgres
-      - SPRING_AUTH_SOURCE_URL=http://keylock:8080/auth
+      - SPRING_AUTH_SOURCE_URL=http://keycloak:8080/auth
   db:
     image: postgres
     restart: always
@@ -35,6 +35,6 @@ services:
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: admin
     ports:
-      - 9090:8080
+      - 8080:8080
     networks:
       - auth-network

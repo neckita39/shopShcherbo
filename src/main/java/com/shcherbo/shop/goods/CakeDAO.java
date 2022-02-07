@@ -1,4 +1,4 @@
-package com.shcherbo.shop.rest.dao;
+package com.shcherbo.shop.goods;
 
 import com.shcherbo.shop.rest.dto.Cake.AdditionalInfo;
 import com.shcherbo.shop.rest.dto.Cake.Cake;
@@ -50,8 +50,8 @@ public class CakeDAO {
 
     }
 
-    public Cake get(int id) {
-        var cake=new Cake();
+    public CakeEntity get(Long id) {
+        var cake=new CakeEntity();
         try {
             var statement=connection.createStatement();
             var SQL= "SELECT * FROM cake WHERE id="+id;
@@ -69,15 +69,15 @@ public class CakeDAO {
         return cake;
     }
 
-    public List<Cake> getAll() {
-        var cakes= new ArrayList<Cake>();
+    public List<CakeEntity> getAll() {
+        var cakes= new ArrayList<CakeEntity>();
         try {
             var statement=connection.createStatement();
             var SQL="SELECT * FROM cake";
             var resultSet=statement.executeQuery(SQL);
 
             while(resultSet.next()){
-                var cake=new Cake();
+                var cake=new CakeEntity();
                 cake.setId(resultSet.getLong("id"));
                 cake.setName(resultSet.getString("name"));
                 cake.setImage(resultSet.getString("image"));
@@ -95,7 +95,7 @@ public class CakeDAO {
         return cakes;
     }
 
-    public void update(int id, AdditionalInfo cake) {
+    public void update(Long id, AdditionalInfo cake) {
         System.out.println(1);
         try {
             var statement=connection.createStatement();
@@ -110,7 +110,7 @@ public class CakeDAO {
         }
     }
 
-    public void delete(int id) {
+    public void delete(Long id) {
         try {
             var statement=connection.createStatement();
             var SQL= "DELETE FROM cake WHERE id="+id;

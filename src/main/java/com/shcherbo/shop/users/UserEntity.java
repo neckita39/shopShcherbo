@@ -17,17 +17,17 @@ import java.util.Objects;
 @RequiredArgsConstructor
 @Table(name = "USERINFO")
 public class UserEntity {
-    @Setter(AccessLevel.PROTECTED)
+    @Setter(AccessLevel.PUBLIC)
     private @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
 
 
-    @Setter(AccessLevel.PROTECTED)
+    @Setter(AccessLevel.PUBLIC)
     @Column(name = "number", nullable = false, unique = true)
     @NaturalId(mutable = true)
     private String number;
 
-    @Setter(AccessLevel.PROTECTED)
+    @Setter(AccessLevel.PUBLIC)
     @Column(name = "name")
     private String name;
 

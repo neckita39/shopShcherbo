@@ -6,7 +6,7 @@ import com.shcherbo.shop.rest.dto.order.Order;
 import com.shcherbo.shop.users.UserEntity;
 
 public interface OrderService {
-    OrderEntity addOrder(Order order, UserEntity user);
+    void addOrder(Order order);
 
     Orders getOrders();
 

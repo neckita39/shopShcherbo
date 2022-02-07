@@ -33,7 +33,6 @@ public class CakeEntity {
     private String manufacturer;
 
     private String shelflife;
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

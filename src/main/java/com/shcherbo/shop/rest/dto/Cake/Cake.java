@@ -42,7 +42,4 @@ public class Cake {
     @Schema(description = "Cake weight", required = true)
     @JsonProperty("weight")
     private BigDecimal weight;
-
-
-
 }
