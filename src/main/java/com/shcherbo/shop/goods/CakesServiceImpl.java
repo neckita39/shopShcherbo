@@ -13,10 +13,10 @@ import java.util.stream.Collectors;
 
 @Service
 public class CakesServiceImpl implements CakesService{
-    private final CakeDAO cakeDAO;
+    private final CakeDAOTempl cakeDAO;
 
     @Autowired
-    public CakesServiceImpl(CakeDAO cakeDAO) {
+    public CakesServiceImpl(CakeDAOTempl cakeDAO) {
         this.cakeDAO = cakeDAO;
     }
     @Override
@@ -40,7 +40,7 @@ public class CakesServiceImpl implements CakesService{
     }
     @Override
     public Cake getCakeById(Long id){
-        var cake=cakeDAO.get(id);
+       var cake=cakeDAO.get(id);
         var newCake=new Cake();
         newCake.setName(cake.getName());
         newCake.setPrice(cake.getPrice());
@@ -52,6 +52,7 @@ public class CakesServiceImpl implements CakesService{
     @Override
     public void addCake(AdditionalInfo cake){
         cakeDAO.create(cake);
+
     }
     @Override
     public void deleteCakeById(Long id)

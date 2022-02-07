@@ -1,19 +1,19 @@
 package com.shcherbo.shop.goods;
 
 import com.shcherbo.shop.rest.dto.Cake.AdditionalInfo;
-import com.shcherbo.shop.rest.dto.Cake.Cake;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class CakeDAO {
+
     private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
     private static final String USERNAME = "postgres";
     private static final String PASSWORD = "postgres";
@@ -33,6 +33,7 @@ public class CakeDAO {
             e.printStackTrace();
         }
     }
+
 
     public void create(AdditionalInfo cake) {
         try {
