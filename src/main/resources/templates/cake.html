@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h3>Состав:</h3>
+<span th:text="${cake.components}"></span>
+<h3>Производитель:</h3>
+<span th:text="${cake.manufacturer}"></span>
+<h3>Срок хранения:</h3>
+<span th:text="${cake.shelflife}"></span>
+<h1></h1>
+<form action="#" th:action="@{'/admin/editcake/'+${cake.id}}"  method="GET">
+    <input type="submit" value="Изменить торт" />
+</form>
+<form action="#" th:action="@{'/admin/deletecake/'+${cake.id}}"  method="GET">
+    <input type="submit" value="удалить торт" />
+</form>
+<form action="#" th:action="@{'/admin/menu'}"  method="GET">
+    <input type="submit" value="На главную" />
+</form>
+<form action="#" th:action="@{'/admin/cakes'}"  method="GET">
+    <input type="submit" value="Назад" />
+</form>
+</body>
+</html>

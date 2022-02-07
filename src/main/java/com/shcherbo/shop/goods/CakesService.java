@@ -6,5 +6,9 @@ import com.shcherbo.shop.rest.dto.Cakes;
 
 public interface CakesService {
     Cakes getCakes();
-    AdditionalInfo getCakeById(Long id);
+    void addCake(AdditionalInfo cake);
+    Cake getCakeById(Long id);
+    void deleteCakeById(Long id);
+    void changeCake(Long id, AdditionalInfo cake);
+    //    CakeEntity getCakeEntity(Long id);
 }

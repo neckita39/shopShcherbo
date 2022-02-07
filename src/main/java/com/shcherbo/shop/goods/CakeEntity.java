@@ -9,12 +9,12 @@ import java.util.Objects;
 
 @Entity
 @Getter
-@Setter
+@Setter(AccessLevel.PROTECTED)
 @ToString
 @RequiredArgsConstructor
 @Table(name = "CAKE")
-class CakeEntity {
-    @Setter(AccessLevel.NONE)
+public class CakeEntity {
+    @Setter(AccessLevel.PROTECTED)
     private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
 
     @Column(name = "name")
@@ -33,7 +33,6 @@ class CakeEntity {
     private String manufacturer;
 
     private String shelflife;
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
