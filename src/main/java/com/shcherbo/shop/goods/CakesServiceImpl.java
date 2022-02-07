@@ -7,20 +7,21 @@ import com.shcherbo.shop.rest.dto.Cakes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class CakesServiceImpl implements CakesService{
-    private final CakeRepository cakeRepository;
+    private final CakeDAO cakeDAO;
 
     @Autowired
-    public CakesServiceImpl(CakeRepository cakeRepository) {
-        this.cakeRepository = cakeRepository;
+    public CakesServiceImpl(CakeDAO cakeDAO) {
+        this.cakeDAO = cakeDAO;
     }
     @Override
     public Cakes getCakes(){
-        List<CakeEntity> cakeEntityList=cakeRepository.findAll();
+        List<CakeEntity> cakeEntityList=cakeDAO.getAll();
         List<Cake> cakeList=cakeEntityList.stream().map(
                 c ->{
                     Cake cake= new Cake();
@@ -38,21 +39,31 @@ public class CakesServiceImpl implements CakesService{
         return cakes;
     }
     @Override
-    public AdditionalInfo getCakeById(Long id){
-        return  cakeRepository.findById(id)
-                .map(cakeEntity -> {
-                    AdditionalInfo additionalInfo=new AdditionalInfo();
-                    additionalInfo.setId(cakeEntity.getId());
-                    additionalInfo.setCalories(cakeEntity.getCalories());
-                    additionalInfo.setName(cakeEntity.getName());
-                    additionalInfo.setImage(cakeEntity.getImage());
-                    additionalInfo.setPrice(cakeEntity.getPrice());
-                    additionalInfo.setWeight(cakeEntity.getWeight());
-                    additionalInfo.setComponents(cakeEntity.getComponents());
-                    additionalInfo.setManufacturer(cakeEntity.getManufacturer());
-                    additionalInfo.setShelflife(cakeEntity.getShelflife());
-                    return additionalInfo;
-                })
-                .orElseThrow(() -> new CakeNotFoundException("No such cake"));
+    public Cake getCakeById(Long id){
+        var cake=cakeDAO.get(id);
+        var newCake=new Cake();
+        newCake.setName(cake.getName());
+        newCake.setPrice(cake.getPrice());
+        newCake.setCalories(cake.getCalories());
+        newCake.setImage(cake.getImage());
+        newCake.setWeight(cake.getWeight());
+        return newCake;
     }
+    @Override
+    public void addCake(AdditionalInfo cake){
+        cakeDAO.create(cake);
+    }
+    @Override
+    public void deleteCakeById(Long id)
+    {
+        cakeDAO.delete(id);
+    }
+    @Override
+    public void changeCake(Long id,AdditionalInfo cake){
+        cakeDAO.update(id, cake);
+    }
+    //    @Override
+//    public CakeEntity getCakeEntity(Long id) {
+//        return cakeRepository.findById(id).get();
+//    }
 }
