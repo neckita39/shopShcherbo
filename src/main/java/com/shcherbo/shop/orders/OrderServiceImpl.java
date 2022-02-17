@@ -1,17 +1,17 @@
 package com.shcherbo.shop.orders;
 
 import com.shcherbo.shop.exception.CakeNotFoundException;
-import com.shcherbo.shop.goods.CakeRepository;
 import com.shcherbo.shop.rest.dto.Orders;
 import com.shcherbo.shop.rest.dto.order.Order;
+import com.shcherbo.shop.rest.dto.user.User;
 import com.shcherbo.shop.users.UserEntity;
-import com.shcherbo.shop.users.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class OrderServiceImpl implements OrderService{
@@ -54,8 +54,12 @@ public class OrderServiceImpl implements OrderService{
     }
     @Override
     public Order getOrderById(Long id){
-        return  orderRepository.findById(id)
+        return  orderRepository.findOrderById(id)
                 .map(c -> {
+                    User user=new User();
+                    user.setName(c.getUser().getName());
+                    //проверка что запрос работает как надо
+                    System.out.println(user.getName());
                     Order order=new Order();
                     order.setDelivery(c.getDelivery());
                     order.setOrderStatus(c.getStatus());
@@ -83,4 +87,6 @@ public class OrderServiceImpl implements OrderService{
         orderEntity.setDeliveryTime(order.getDeliveryTime());
         orderRepository.save(orderEntity);
     }
+
+
 }

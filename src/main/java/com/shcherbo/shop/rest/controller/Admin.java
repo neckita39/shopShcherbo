@@ -40,11 +40,11 @@ public class Admin {
         return "menu";
     }
 
-    @PostMapping(value = "/editcake")//Request
-    public RedirectView editCake(AdditionalInfo additionalInfo) {
-        cakesService.changeCake(additionalInfo);
-        return new RedirectView("/admin/cakes");
-    }
+//    @PostMapping(value = "/editcake")//Request
+//    public RedirectView editCake(AdditionalInfo additionalInfo) {
+//        cakesService.changeCake(additionalInfo);
+//        return new RedirectView("/admin/cakes");
+//    }
 
     @GetMapping(value = "/editcake/{id}")
     public ModelAndView getCakeEditForm(AdditionalInfo additionalInfo) {

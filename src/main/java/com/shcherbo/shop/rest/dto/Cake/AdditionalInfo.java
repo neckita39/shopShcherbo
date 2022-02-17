@@ -41,17 +41,14 @@ public class AdditionalInfo {
     @JsonProperty("weight")
     private BigDecimal weight;
 
-    @NotNull
     @Schema(description = "Components of cake", required = false)
     @JsonProperty("components")
     private String components;
 
-    @NotNull
     @Schema(description = "Manufacturer of cake", required = false)
     @JsonProperty("manufacturer")
     private String manufacturer;
 
-    @NotNull
     @Schema(description = "Shelf life of cake", required = false)
     @JsonProperty("shelflife")
     private String shelflife;

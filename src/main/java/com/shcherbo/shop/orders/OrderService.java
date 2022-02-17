@@ -5,6 +5,8 @@ import com.shcherbo.shop.rest.dto.Orders;
 import com.shcherbo.shop.rest.dto.order.Order;
 import com.shcherbo.shop.users.UserEntity;
 
+import java.util.stream.Stream;
+
 public interface OrderService {
     OrderEntity addOrder(Order order, UserEntity user);
 
@@ -15,5 +17,6 @@ public interface OrderService {
     void deleteOrderById(Long id);
 
     void changeOrder(Order order);
+
 
 }
