@@ -26,10 +26,11 @@ public class OrderEntity {
     private @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
 
+
+
     @Setter(AccessLevel.PROTECTED)
     @ToString.Exclude
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(nullable = false)
+    @ManyToOne()
     private UserEntity user;
 
     @Setter(AccessLevel.PROTECTED)

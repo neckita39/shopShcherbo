@@ -33,7 +33,7 @@ public class UserEntity {
 
     @Setter(AccessLevel.NONE)
     @ToString.Exclude
-    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
+    @OneToMany()
     private List<OrderEntity> order=new ArrayList<>();
 
     @Override

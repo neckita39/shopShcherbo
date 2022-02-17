@@ -12,19 +12,20 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class CakesServiceImpl implements CakesService{
+public class CakesServiceImpl implements CakesService {
     private final CakeRepository cakeRepository;
 
     @Autowired
     public CakesServiceImpl(CakeRepository cakeRepository) {
         this.cakeRepository = cakeRepository;
     }
+
     @Override
-    public Cakes getCakes(){
-        List<CakeEntity> cakeEntityList=cakeRepository.findAll();
-        List<Cake> cakeList=cakeEntityList.stream().map(
-                c ->{
-                    Cake cake= new Cake();
+    public Cakes getCakes() {
+        List<CakeEntity> cakeEntityList = cakeRepository.findCakes();
+        List<Cake> cakeList = cakeEntityList.stream().map(
+                c -> {
+                    Cake cake = new Cake();
                     cake.setId(c.getId());
                     cake.setCalories(c.getCalories());
                     cake.setName(c.getName());
@@ -34,13 +35,14 @@ public class CakesServiceImpl implements CakesService{
                     return cake;
                 }
         ).collect(Collectors.toList());
-        Cakes cakes=new Cakes();
+        Cakes cakes = new Cakes();
         cakes.setCakeList(cakeList);
         return cakes;
     }
+
     @Override
-    public AdditionalInfo getCakeById(Long id){
-        return  cakeRepository.findById(id)
+    public AdditionalInfo getCakeById(Long id) {
+        return  cakeRepository.findOneCake(id)
                 .map(cakeEntity -> {
                     AdditionalInfo additionalInfo=new AdditionalInfo();
                     additionalInfo.setId(cakeEntity.getId());
@@ -56,15 +58,18 @@ public class CakesServiceImpl implements CakesService{
                 })
                 .orElseThrow(() -> new CakeNotFoundException("No such cake"));
     }
+
     @Override
     public CakeEntity getCakeEntity(Long id) {
         return cakeRepository.findById(id).get();
     }
+
     @Override
-    public void addCake(AdditionalInfo cake){
+    public void addCake(AdditionalInfo cake) {
         CakeEntity cakeEntity = new CakeEntity();
         cakeEntity.setCalories(cake.getCalories());
-        cakeEntity.setImage(cake.getImage());;
+        cakeEntity.setImage(cake.getImage());
+        ;
         cakeEntity.setName(cake.getName());
         cakeEntity.setPrice(cake.getPrice());
         cakeEntity.setWeight(cake.getWeight());
@@ -73,22 +78,15 @@ public class CakesServiceImpl implements CakesService{
         cakeEntity.setShelflife(cake.getShelflife());
         cakeRepository.save(cakeEntity);
     }
+
     @Override
-    public void deleteCakeById(Long id)
-    {
+    public void deleteCakeById(Long id) {
         cakeRepository.deleteAllById(Collections.singleton(id));
     }
+
     @Override
-    public void changeCake(AdditionalInfo additionalInfo){
-        CakeEntity cakeEntity = cakeRepository.getById(additionalInfo.getId());
-        cakeEntity.setCalories(additionalInfo.getCalories());
-        cakeEntity.setImage(additionalInfo.getImage());;
-        cakeEntity.setName(additionalInfo.getName());
-        cakeEntity.setPrice(additionalInfo.getPrice());
-        cakeEntity.setWeight(additionalInfo.getWeight());
-        cakeEntity.setComponents(additionalInfo.getComponents());
-        cakeEntity.setManufacturer(additionalInfo.getManufacturer());
-        cakeEntity.setShelflife(additionalInfo.getShelflife());
-        cakeRepository.save(cakeEntity);
+    public void changeCake(Long id,  Cake cake) {
+        System.out.println(id);
+        cakeRepository.createCake(id, cake);
     }
 }
